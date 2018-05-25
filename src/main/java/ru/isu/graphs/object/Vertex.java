@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class Vertex {
     private int id;
-    private double x;
-    private double y;
+    private int x;
+    private int y;
     private int status;
     private int[] neighbours;
 
@@ -20,7 +20,7 @@ public class Vertex {
         this.neighbours = Arrays.stream(v[4].split(" ")).mapToInt(Integer::parseInt).toArray();
     }
 
-    public Vertex(int id, double x, double y, int status, int[] neighbours) {
+    public Vertex(int id, int x, int y, int status, int[] neighbours) {
         this.id = id;
         this.x = x;
         this.y = y;
@@ -36,19 +36,19 @@ public class Vertex {
         this.id = id;
     }
 
-    public double getx() {
+    public int getx() {
         return x;
     }
 
-    public void setx(double x) {
+    public void setx(int x) {
         this.x = x;
     }
 
-    public double gety() {
+    public int gety() {
         return y;
     }
 
-    public void sety(double y) {
+    public void sety(int y) {
         this.y = y;
     }
 
@@ -66,6 +66,15 @@ public class Vertex {
 
     public void setNeighbours(int[] neighbours) {
         this.neighbours = neighbours;
+    }
+
+    public boolean isNeighbour(Vertex vertex) {
+        int vertexId = vertex.getId();
+        for (int id : this.neighbours) {
+            if (id == vertexId)
+                return true;
+        }
+        return false;
     }
 
     @Override
