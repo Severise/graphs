@@ -9,9 +9,9 @@ public class Vertex {
     private int status;
     private int[] neighbours;
 
-    public Vertex(String vert) {
-        vert = vert.substring(1);
-        String[] v = vert.split(",");
+    public Vertex(String vertexString) {
+        vertexString = vertexString.substring(vertexString.indexOf("{") + 1, vertexString.lastIndexOf("}"));
+        String[] v = vertexString.split(",");
         this.id = Integer.parseInt(v[0]);
         this.x = Integer.parseInt(v[1]);
         this.y = Integer.parseInt(v[2]);
@@ -32,10 +32,11 @@ public class Vertex {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    /*
+        public void setId(int id) {
+            this.id = id;
+        }
+    */
     public int getx() {
         return x;
     }
@@ -57,17 +58,19 @@ public class Vertex {
     }
 
     public void setStatus(int status) {
-        this.status = status;
+        if (this.status == 0)
+            this.status = status;
     }
 
     public int[] getNeighbours() {
         return neighbours;
     }
 
-    public void setNeighbours(int[] neighbours) {
-        this.neighbours = neighbours;
-    }
-
+    /*
+        public void setNeighbours(int[] neighbours) {
+            this.neighbours = neighbours;
+        }
+      */
     public boolean isNeighbour(Vertex vertex) {
         int vertexId = vertex.getId();
         for (int id : this.neighbours) {

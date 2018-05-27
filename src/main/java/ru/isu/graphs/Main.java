@@ -14,16 +14,17 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        int n = (int) (Math.random() * 3) + 1;
+        int n = (int) (Math.random() * 3) + 2;
         ArrayList<Vertex> Vertexes = VertexArrayFromFile(n);
         Graph graph = new Graph(Vertexes);
-
         Player Player1 = new Player(Vertexes.get(0));
-    //    System.out.println(graph);
+        Player Player2 = new Player(Vertexes.get(2));
+        //first vertex - random?|determine by clicking?
+
+        //System.out.println(graph);
 
         JFrame graphFrame = new JFrame("Game");
         drawGraph(graphFrame, graph);
-
 
     }
 

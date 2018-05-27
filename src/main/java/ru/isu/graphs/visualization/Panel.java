@@ -11,31 +11,31 @@ public class Panel extends JPanel {
 
     public Panel(Graph graph) {
         this.graph = graph;
-
     }
 
     public void paint(Graphics graphics) {
-          graphics = (Graphics2D) graphics;
-        graphics.setColor(Color.BLUE);
-        int s = 20;
-        for (Vertex vertex : graph.getVertexes()) {
-            graphics.fillOval(vertex.getx() - s / 2, vertex.gety() - s / 2, s, s);
+        graphics = (Graphics2D) graphics;
+        int s = 30;
+        for (Vertex vertex : graph.getVertexes())
             for (Vertex vertex1 : graph.getVertexes()) {
-                int[] vertId = vertex.getNeighbours();
-                for (int o = 0; o < vertId.length; o++) {
-                    if (vertId[o] == vertex1.getId()) {
-                        System.out.println(vertex + "     " + vertex1);
-
-                        graphics.drawLine(vertex.getx(), vertex.gety(), vertex1.getx(), vertex1.gety());
-                    }
+                if (vertex.isNeighbour(vertex1)) {
+                    graphics.drawLine(vertex.getx(), vertex.gety(), vertex1.getx(), vertex1.gety());
+                    if (vertex1.getStatus() == 0)
+                        graphics.setColor(Color.BLUE);
+                    if (vertex1.getStatus() == 1)
+                        graphics.setColor(Color.red);
+                    if (vertex1.getStatus() == 2)
+                        graphics.setColor(Color.green);
+                    graphics.fillOval(vertex1.getx() - s / 2, vertex1.gety() - s / 2, s, s);
+                    graphics.setColor(Color.BLUE);
                 }
             }
 
-        }
-
     }
 
-
 }
+
+
+
 
 
